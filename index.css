@@ -1,0 +1,11 @@
+.box {
+    width: 100px;
+    height: 100px;
+    color: black;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    gap: 20px;
+}
