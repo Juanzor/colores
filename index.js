@@ -8,15 +8,19 @@ let quantity = 6;
 
 const generateColor = () => {
     let color = '#';
-    for (let i = 0; i < quantity; i++) { // Genera la cantidad de cajas correspondientes 
-        for (let i = 0; i < 6; i++) {                             // Genera 6 veces un numero al azar entre 0 
-            color += Math.floor(Math.random() * 16).toString(16); // y 15, y toString() los convierte a su valor hexadecimal
+    for (let i = 0; i < quantity; i++) {
+        for (let i = 0; i < 6; i++) {
+            color += Math.floor(Math.random() * 16).toString(16);
         }
         return color;
     }
 };
 
-const generateArrayColors = () => { // Crea el array con la cantidad de cajas correspondientes usando generateColors() y asegura que no haya duplicados
+/* Genera la cantidad de cajas correspondientes con quantity
+    Genera 6 veces un numero al azar entre 0 y 15,
+    y toString() los convierte a su valor hexadecimal */
+
+const generateArrayColors = () => {
     while (colors.length < quantity) {
         const newColor = generateColor();
         if (!colors.includes(newColor)) {
@@ -24,20 +28,27 @@ const generateArrayColors = () => { // Crea el array con la cantidad de cajas co
         }
     }
 };
+/* Rellena el array con la cantidad de cajas correspondientes 
+    usando generateColors() y asegura que no haya duplicados */
 
 generateArrayColors();
-colorToGuess = colors[Math.floor(Math.random() * quantity)]; // Retorna una posicion al azar de colors[] mediante un indice aleatorio entre 0 y quantity
+
+colorToGuess = colors[Math.floor(Math.random() * quantity)];
+/* Retorna una posicion al azar de colors[] mediante un 
+    indice aleatorio entre 0 y quantity */
 
 guess.textContent = `El color a adivinar es ${colorToGuess}`;
 
-const verifyColor = (color) => {  // Verifica si  el color tomado al azar de colors[] es igual al color pasado por parametro
+const verifyColor = (color) => {
     if (color === colorToGuess) {
         window.alert('Ganaste!! Reiniciando...');
         window.location.reload();
     }
 };
+/* Verifica si el color tomado al azar de colors[] 
+    es igual al color pasado por parametro */
 
-const renderColors = () => { // Renderiza cada caja con su color, le asigna su valor mediante el id y su listener verifyColor
+const renderColors = () => {
     colors.forEach((e) => {
         const box = document.createElement('div');
         box.classList.add('box');
@@ -49,5 +60,7 @@ const renderColors = () => { // Renderiza cada caja con su color, le asigna su v
         container.appendChild(box);
     });
 };
+/*  Renderiza cada caja con su color, le asigna su 
+    valor mediante el id y su listener verifyColor() */
 
 renderColors();
